@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.ProductStockMapper">
+
+  <resultMap id="BaseResultMap" type="com.vip.imi.domain.entity.ProductStock">
+    <id column="product_stock_id" jdbcType="INTEGER" property="productStockId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_stock_place" jdbcType="VARCHAR" property="productStockPlace" />
+    <result column="product_stock_num" jdbcType="INTEGER" property="productStockNum" />
+    <result column="product_stock_is_delete" jdbcType="INTEGER" property="productStockIsDelete" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    product_stock_id, product_id, product_stock_place, product_stock_num, product_stock_is_delete
+  </sql>
+
+</mapper>

@@ -1,5 +1,6 @@
 package com.vip.imi.utils;
 
+import com.vip.imi.domain.entity.Product;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,6 +11,8 @@ import java.io.Serializable;
  * @date 2019/8/25 21:21
  */
 @Data
-public class CateBean implements Serializable {
+public class DetailBean implements Serializable {
+
+    Product product;
 
 }

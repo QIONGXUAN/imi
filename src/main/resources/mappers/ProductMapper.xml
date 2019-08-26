@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.ProductMapper">
+
+  <resultMap id="BaseResultMap" type="com.vip.imi.domain.entity.Product">
+    <id column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="category_menu_id" jdbcType="INTEGER" property="categoryMenuId" />
+    <result column="navigation_menu_id" jdbcType="INTEGER" property="navigationMenuId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="product_desc" jdbcType="VARCHAR" property="productDesc" />
+    <result column="product_company" jdbcType="VARCHAR" property="productCompany" />
+    <result column="product_old_price" jdbcType="DECIMAL" property="productOldPrice" />
+    <result column="product_new_price" jdbcType="DECIMAL" property="productNewPrice" />
+    <result column="product_create_date" jdbcType="TIMESTAMP" property="productCreateDate" />
+    <result column="product_status" jdbcType="INTEGER" property="productStatus" />
+  </resultMap>
+
+  <resultMap id="SelectByProductIdMap" type="com.vip.imi.domain.vo.ProductVo"
+             extends="BaseResultMap">
+    <collection property="productStockList" ofType="com.vip.imi.domain.entity.ProductStock"
+                resultMap="com.vip.imi.mapper.ProductStockMapper.BaseResultMap"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    p.product_id, p.product_name, p.product_desc, p.product_company,
+    p.product_old_price, p.product_new_price
+  </sql>
+
+  <select id="selectByProductId" parameterType="java.lang.Integer" resultMap="SelectByProductIdMap">
+    select
+    <include refid="Base_Column_List" />,
+    ps.product_stock_place, ps.product_stock_num
+    from t_product p
+    left join t_product_stock ps on p.product_id = ps.product_id
+    where p.product_id = #{productId}
+    and p.product_status=1
+  </select>
+
+</mapper>

@@ -4,7 +4,9 @@
        xmlns:mybatis="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <mybatis:component-scan base-package="com.vip.imi.mapper"/>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.vip.bd.mapper"/>
+    </bean>
 
     <bean class="org.mybatis.spring.SqlSessionFactoryBean"
           p:dataSource="dataSource"
