@@ -2,6 +2,7 @@ package com.vip.imi.utils;
 
 import lombok.Data;
 
+
 /**
  * 结果集
  * @author QiongXuan_Lin

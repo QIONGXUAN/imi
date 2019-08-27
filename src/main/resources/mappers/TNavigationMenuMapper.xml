@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.TNavigationMenuMapper">
+    <resultMap id="Base_TNavigationMenu_ResultMap" type="TNavigationMenu">
+        <id property="navigationMenuId" column="navigation_menu_id"/>
+        <result property="navigationId" column="navigation_id" />
+    </resultMap>
+
+    <resultMap id="Base_TNavigationMenu_Vo"
+               type="com.vip.imi.domain.vo.TNavigationMenuVo"
+               extends="Base_TNavigationMenu_ResultMap">
+        <collection property="tProductList" ofType="com.vip.imi.domain.entity.TProduct">
+            <id property="productId" column="product_id"/>
+            <result property="productName" column="product_name" />
+        </collection>
+    </resultMap>
+
+</mapper>

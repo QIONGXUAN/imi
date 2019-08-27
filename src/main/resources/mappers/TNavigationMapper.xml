@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.TNavigationMapper">
+    <resultMap id="customResult" type="com.vip.imi.domain.vo.TNavigationVo">
+        <id property="navigationId" column="navigation_id"/>
+        <result property="navigationName" column="navigation_name"/>
+        <collection property="tNavigationMenuList"
+                    resultMap="com.vip.imi.mapper.TNavigationMenuMapper.Base_TNavigationMenu_Vo">
+        </collection>
+    </resultMap>
+
+    <select id="findAll" resultMap="customResult">
+        SELECT *
+        FROM t_navigation t
+            LEFT JOIN  t_navigation_menu tnm ON t.navigation_id = tnm.navigation_id
+            LEFT JOIN t_product tp ON tnm.navigation_menu_id = tp.navigation_menu_id
+    </select>
+</mapper>
