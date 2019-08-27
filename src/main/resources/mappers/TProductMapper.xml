@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.TProductMapper">
+    <resultMap id="Base_TProductMapper_Vo" type="com.vip.imi.domain.vo.TProductVo">
+        <id property="productId" column="product_id"/>
+        <result property="productName" column="product_name" />
+        <collection property="tProductImageList"
+                    ofType="com.vip.imi.domain.entity.TProductImage">
+            <id property="productImageId" column="product_image_id"/>
+            <result property="productImageUrl" column="product_image_url"/>
+        </collection>
+    </resultMap>
+</mapper>

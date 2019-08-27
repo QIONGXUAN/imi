@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.TCategoryMapper">
+    <resultMap id="cate_gory_map" type="com.vip.imi.domain.vo.TCategoryVo">
+        <id property="categoryId" column="category_id"/>
+        <result property="categoryName" column="category_name"/>
+        <collection property="tCategoryMenuList"
+                    ofType="com.vip.imi.domain.entity.TCategoryMenu">
+            <id property="categoryMenuId" column="category_menu_id"/>
+            <result property="categoryMenuName" column="category_menu_name"/>
+        </collection>
+    </resultMap>
+
+    <select id="findshops" resultMap="cate_gory_map">
+          select c.category_id,tc.category_name,tcm.category_menu_name,tcm.category_menu_id,
+          tpi.product_image_id,tpi.product_image_url,tpi.product_image_type
+          from t_category tc
+          left join t_category_menu tcm on tc.category_id = tcm.category_id
+          left join t_product tp on tcm.category_menu_id = tp.category_menu_id
+          left join t_product_image tpi on tp.product_id = tpi.product_id
+          where tcm.category_menu_status=0 and tpi.product_image_is_delete = 0;
+    </select>
+</mapper>

@@ -5,14 +5,18 @@
         <id property="navigationId" column="navigation_id"/>
         <result property="navigationName" column="navigation_name"/>
         <collection property="tNavigationMenuList"
-                    resultMap="com.vip.imi.mapper.TNavigationMenuMapper.Base_TNavigationMenu_Vo">
+         resultMap="com.vip.imi.mapper.TNavigationMenuMapper.Base_TNavigationMenu_Vo">
         </collection>
     </resultMap>
 
     <select id="findAll" resultMap="customResult">
-        SELECT *
+        SELECT tp.product_name,t.navigation_id,t.navigation_name,tnm.navigation_id,
+        tnm.navigation_menu_id,tp.product_old_price,tpi.product_image_url,
+        tpi.product_id,tpi.product_image_type
         FROM t_navigation t
             LEFT JOIN  t_navigation_menu tnm ON t.navigation_id = tnm.navigation_id
             LEFT JOIN t_product tp ON tnm.navigation_menu_id = tp.navigation_menu_id
+            left join t_product_image tpi on tp.product_id = tpi.product_id
+            where tp.product_status = 1 and tpi.product_image_is_delete = 0;
     </select>
 </mapper>

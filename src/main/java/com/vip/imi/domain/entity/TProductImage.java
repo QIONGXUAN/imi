@@ -12,7 +12,7 @@ public class TProductImage {
     /**
     * 商品id
     */
-    private Integer prodcutId;
+    private Integer productId;
 
     /**
     * 商品图片类型：
