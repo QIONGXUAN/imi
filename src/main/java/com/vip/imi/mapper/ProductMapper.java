@@ -1,6 +1,9 @@
 package com.vip.imi.mapper;
 
 import com.vip.imi.domain.entity.Product;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * 
@@ -9,6 +12,12 @@ import com.vip.imi.domain.entity.Product;
  */
 public interface ProductMapper {
 
-    Product selectByProductId(Integer productId);
+    /**
+     * 商品详情-根据商品id
+     * @param productId
+     * @return
+     */
+    Product selectByProductId(@Param("productId") Integer productId);
+
 
 }

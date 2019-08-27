@@ -21,7 +21,7 @@ public class ProductController {
 
     @RequestMapping
     public Result productBuy(int productId){
-        DetailBean productDetail = productService.productDetail(productId);
+        DetailBean productDetail = productService.productBuy(productId);
         return Result.success(productDetail);
     }
 

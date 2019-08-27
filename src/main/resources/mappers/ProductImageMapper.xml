@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.ProductImageMapper">
+
+  <resultMap id="BaseResultMap" type="com.vip.imi.domain.entity.ProductImage">
+    <id column="product_image_id" jdbcType="INTEGER" property="productImageId" />
+    <result column="prodcut_id" jdbcType="INTEGER" property="prodcutId" />
+    <result column="product_image_type" jdbcType="VARCHAR" property="productImageType" />
+    <result column="product_image_url" jdbcType="VARCHAR" property="productImageUrl" />
+    <result column="product_image_is_delete" jdbcType="INTEGER" property="productImageIsDelete" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    tpi.product_image_id, tpi.product_image_type, tpi.product_image_url
+  </sql>
+
+  <select id="selectByProductId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_product_image tpi
+    where tpi.product_id = #{productId}
+    and tpi.product_image_is_delete=0
+  </select>
+
+</mapper>

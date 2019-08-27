@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.ProductPropertyValueMapper">
+
+  <resultMap id="BaseResultMap" type="com.vip.imi.domain.entity.ProductPropertyValue">
+    <id column="product_property_value_id" jdbcType="INTEGER" property="productPropertyValueId" />
+    <result column="product_property_id" jdbcType="INTEGER" property="productPropertyId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_property_value" jdbcType="VARCHAR" property="productPropertyValue" />
+    <result column="product_property_value_is_delete" jdbcType="INTEGER" property="productPropertyValueIsDelete" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    tppv.product_property_value_id, tppv.product_property_value
+  </sql>
+
+  <select id="selectByProductPropertyValueId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_product_property_value tppv
+    where tppv.product_property_value_id=#{ppvId}
+  </select>
+
+
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.ProductPropertyMapper">
+
+  <resultMap id="BaseResultMap" type="com.vip.imi.domain.entity.ProductProperty">
+    <id column="product_property_id" jdbcType="INTEGER" property="productPropertyId" />
+    <result column="product_property_name" jdbcType="VARCHAR" property="productPropertyName" />
+    <result column="product_property_is_delete" jdbcType="INTEGER" property="productPropertyIsDelete" />
+  </resultMap>
+  
+  <resultMap id="SelectByProductIdMap" type="com.vip.imi.domain.vo.ProductPropertyVo"
+             extends="BaseResultMap">
+    <collection property="productPropertyValues" ofType="com.vip.imi.domain.entity.ProductPropertyValue"
+                resultMap="com.vip.imi.mapper.ProductPropertyValueMapper.BaseResultMap"/>
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    tpp.product_property_id, tpp.product_property_name
+  </sql>
+
+  <select id="selectByProductId" parameterType="java.lang.Integer" resultMap="SelectByProductIdMap">
+    select
+    <include refid="Base_Column_List" />,
+    tppv.product_property_value_id, tppv.product_id, tppv.product_property_value
+    from t_product_property tpp
+    left join t_product_property_value tppv on tpp.product_property_id = tppv.product_property_id
+    where tppv.product_id=#{productId}
+    and tpp.product_property_name in ('版本','颜色','套餐')
+    and tpp.product_property_is_delete=0
+    and tppv.product_property_value_is_delete=0
+  </select>
+
+</mapper>

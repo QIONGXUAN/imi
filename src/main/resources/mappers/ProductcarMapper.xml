@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.ProductcarMapper">
+
+  <resultMap id="BaseResultMap" type="com.vip.imi.domain.entity.Productcar">
+    <id column="productcar_id" jdbcType="INTEGER" property="productcarId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="productcar_num" jdbcType="INTEGER" property="productcarNum" />
+    <result column="productcar_create_date" jdbcType="TIMESTAMP" property="productcarCreateDate" />
+    <result column="productcar_status" jdbcType="INTEGER" property="productcarStatus" />
+    <result column="productcar_is_delete" jdbcType="INTEGER" property="productcarIsDelete" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    productcar_id, user_id, product_id, productcar_num
+  </sql>
+
+  <insert id="insert">
+    insert into t_productcar (user_id, product_id, productcar_num)
+    values (#{userId},#{productId},#{productcarNum})
+  </insert>
+
+  <select id="selectByUserId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_productcar
+    where t_productcar.user_id=#{userId}
+    and t_productcar.productcar_is_delete=1
+  </select>
+
+</mapper>

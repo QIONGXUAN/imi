@@ -13,6 +13,6 @@ import java.util.List;
 @Data
 public class ProductVo extends Product {
 
-    List<ProductStock> productStockList;
+    List<ProductStock> productStocks;
 
 }

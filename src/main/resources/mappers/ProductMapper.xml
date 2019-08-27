@@ -17,23 +17,24 @@
 
   <resultMap id="SelectByProductIdMap" type="com.vip.imi.domain.vo.ProductVo"
              extends="BaseResultMap">
-    <collection property="productStockList" ofType="com.vip.imi.domain.entity.ProductStock"
+    <collection property="productStocks" ofType="com.vip.imi.domain.entity.ProductStock"
                 resultMap="com.vip.imi.mapper.ProductStockMapper.BaseResultMap"/>
   </resultMap>
 
   <sql id="Base_Column_List">
-    p.product_id, p.product_name, p.product_desc, p.product_company,
-    p.product_old_price, p.product_new_price
+    tp.product_id, tp.product_name, tp.product_desc, tp.product_company,
+    tp.product_old_price, tp.product_new_price
   </sql>
 
   <select id="selectByProductId" parameterType="java.lang.Integer" resultMap="SelectByProductIdMap">
     select
     <include refid="Base_Column_List" />,
-    ps.product_stock_place, ps.product_stock_num
-    from t_product p
-    left join t_product_stock ps on p.product_id = ps.product_id
-    where p.product_id = #{productId}
-    and p.product_status=1
+    tps.product_stock_place, tps.product_stock_num
+    from t_product tp
+    left join t_product_stock tps on tp.product_id = tps.product_id
+    where tp.product_id = #{productId}
+    and tp.product_status=1
+    and tps.product_stock_is_delete=0
   </select>
 
 </mapper>

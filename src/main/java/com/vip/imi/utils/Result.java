@@ -22,6 +22,13 @@ public class Result<T> {
         return result;
     }
 
+    public static Result success(){
+        Result result = new Result();
+        result.setStatus(Constants.SUCCESS_STATUS_200);
+        result.setMsg(Constants.SUCCESS_MSG);
+        return result;
+    }
+
     public static Result error(){
         Result result = new Result();
         result.setStatus(Constants.ERROE_STATUS_404);

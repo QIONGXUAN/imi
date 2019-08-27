@@ -7,5 +7,11 @@ import com.vip.imi.utils.DetailBean;
  * @date 2019/8/26 20:32
  */
 public interface ProductService {
-    public DetailBean productDetail(int productId);
+
+    /**
+     * 商品详情
+     * @param productId
+     * @return
+     */
+    public DetailBean productBuy(int productId);
 }
