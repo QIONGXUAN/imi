@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.TProductMapper">
+<resultMap id="Base_TProductMapper_Vo" type="com.vip.imi.domain.vo.TProductVo">
+    <id property="productId" column="product_id"/>
+    <result property="productName" column="product_name" />
+    <collection property="tProductImageList"
+                ofType="com.vip.imi.domain.entity.TProductImage">
+        <id property="productImageId" column="product_image_id"/>
+        <result property="productImageUrl" column="product_image_url"/>
+    </collection>
+</resultMap>
+
+<select id="AllTProduct" resultType="com.vip.imi.domain.entity.TProduct">
+        select tc.category_id,tc.category_name,tcm.category_menu_id,tcm.category_menu_name
+        tp.product_id,tp.product_old_price,tp.product_name,tp.product_company,tp.product_new_price
+        tp.product_desc
+        from t_category tc left join t_category_menu tcm on tc.category_id = tcm.category_id
+        left join t_product tp on tcm.category_menu_id = tp.category_menu_id
+        where tcm.category_menu_status = 0 and tp.product_status = 1;
+    </select>
+</mapper>

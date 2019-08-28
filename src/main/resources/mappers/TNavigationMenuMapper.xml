@@ -9,9 +9,9 @@
     <resultMap id="Base_TNavigationMenu_Vo"
                type="com.vip.imi.domain.vo.TNavigationMenuVo"
                extends="Base_TNavigationMenu_ResultMap">
-        <collection property="tProductList" ofType="com.vip.imi.domain.entity.TProduct">
-            <id property="productId" column="product_id"/>
-            <result property="productName" column="product_name" />
+        <collection property="tProductList"
+                    resultMap="com.vip.imi.mapper.TProductMapper.Base_TProductMapper_Vo">
+
         </collection>
     </resultMap>
 
