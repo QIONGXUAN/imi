@@ -2,9 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>imi首页</title>
+    <script src="js/jquery.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/3.4.1/js/bootstrap.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <script>
+    //首页信息
+    let head_url = 'http://localhost:8080/api/heads';
+    $(function () {
+        $.get(head_url,function (results) {
+            if (results.status === 200) {
+                let $navigation = $("#navigation>ul");
+                for (const navigation of results.data.tNavigationVos) {
+                    $navigation.append(
+                        $("<li>").append(
+                            $("<a>")
+                                .attr('href', "http://http://localhost:8080/api/xxx?id=" + navigation.navigationId)
+                                .text(navigation.navigationName)
+                        )
+                    )
+                }
+
+            }
+
+        },'json');
+    });
+    </script>
 </head>
 <body>
+<div class="container-fluid">
+    <div id="navigation">
+        <ul class="list-inline">
+
+        </ul>
+    </div>
+</div>
 
 </body>
 </html>
