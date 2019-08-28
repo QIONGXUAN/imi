@@ -21,4 +21,7 @@
           left join t_product_image tpi on tp.product_id = tpi.product_id
           where tcm.category_menu_status=0 and tpi.product_image_is_delete = 0;
     </select>
+
+
+
 </mapper>

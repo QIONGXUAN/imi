@@ -2,6 +2,7 @@ package com.vip.imi.utils;
 
 import com.vip.imi.domain.vo.TCategoryVo;
 import com.vip.imi.domain.vo.TNavigationVo;
+import com.vip.imi.domain.vo.TProductVo;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,4 +12,5 @@ import java.util.List;
 public class CateBean implements Serializable {
     List<TNavigationVo> tNavigationVos;
     List<TCategoryVo> tCategoryVos;
+    List<TProductVo> tProductVos;
 }

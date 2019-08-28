@@ -6,12 +6,11 @@
         <id property="categoryMenuId" column="category_menu_id"/>
         <result property="categoryMenuName" column="category_menu_name"/>
     </resultMap>
-   <resultMap id="tCategoryMenu_vo"
+   <resultMap id="Base_TCategoryMenu_Vo"
               type="com.vip.imi.domain.vo.TCategoryMenuVo"
               extends="Base_TCategoryMenuVo_ResultMap">
-       <collection property="tProductList"
-                   resultMap="com.vip.imi.mapper.TProductMapper.Base_TProductMapper_Vo">
-
-       </collection>
+       <collection  property="tProductList"
+                   resultMap="com.vip.imi.mapper.TProductMapper.qwe">
+       </collection >
    </resultMap>
 </mapper>

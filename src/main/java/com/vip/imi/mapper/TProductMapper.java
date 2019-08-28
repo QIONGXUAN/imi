@@ -1,10 +1,10 @@
 package com.vip.imi.mapper;
 
 
-import com.vip.imi.domain.entity.TProduct;
+import com.vip.imi.domain.vo.TProductVo;
 
 import java.util.List;
 
 public interface TProductMapper {
-    List<TProduct> AllTProduct();
+    List<TProductVo> AllTProduct();
 }
