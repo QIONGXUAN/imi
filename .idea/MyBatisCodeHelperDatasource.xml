@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MyBatisCodeHelperDatasource">
+    <option name="projectProfile">
+      <ProjectProfile>
+        <option name="javaMapperPackage" value="com.vip.imi.mapper" />
+        <option name="javaMapperPath" value="$PROJECT_DIR$/src/main/java" />
+        <option name="javaModelPackage" value="com.vip.imi.domain.entity" />
+        <option name="javaModelPath" value="$PROJECT_DIR$/src/main/java" />
+        <option name="lastDatabaseCrudChooseModuleName" value="imi" />
+        <option name="moduleNameToPackageAndPathMap">
+          <map>
+            <entry key="imi">
+              <value>
+                <UserPackageAndPathInfoByModule>
+                  <option name="javaMapperPackage" value="com.vip.imi.mapper" />
+                  <option name="javaMapperPath" value="$PROJECT_DIR$/src/main/java" />
+                  <option name="javaModelPacakge" value="com.vip.imi.domain.entity" />
+                  <option name="javaModelPath" value="$PROJECT_DIR$/src/main/java" />
+                  <option name="xmlPackage" value="mappers" />
+                  <option name="xmlPath" value="$PROJECT_DIR$/src/main/resources" />
+                </UserPackageAndPathInfoByModule>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="tableGenerateConfigs">
+          <map>
+            <entry key="imi1:t_product">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="product_id" />
+                  <option name="javaModelName" value="TProduct" />
+                  <option name="moduleName" value="imi" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="imi1:t_product_image">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="product_image_id" />
+                  <option name="javaModelName" value="TProductImage" />
+                  <option name="moduleName" value="imi" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="imi1:t_user_addr">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="user_addr_id" />
+                  <option name="javaModelName" value="TUserAddr" />
+                  <option name="moduleName" value="imi" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+            <entry key="imi1:t_usre_inf">
+              <value>
+                <TableGenerateConfig>
+                  <option name="generatedKey" value="user_inf_id" />
+                  <option name="javaModelName" value="TUsreInf" />
+                  <option name="moduleName" value="imi" />
+                  <option name="useActualColumnName" value="false" />
+                </TableGenerateConfig>
+              </value>
+            </entry>
+          </map>
+        </option>
+        <option name="useLomBokOnModel" value="true" />
+        <option name="xmlMapperPackage" value="mappers" />
+        <option name="xmlMapperPath" value="$PROJECT_DIR$/src/main/resources" />
+      </ProjectProfile>
+    </option>
+  </component>
+</project>

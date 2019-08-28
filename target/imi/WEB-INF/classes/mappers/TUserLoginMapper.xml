@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.UserLoginMapper">
+  <resultMap id="BaseResultMap" type="UserLogin">
+    <!--@mbg.generated-->
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="user_create_date" jdbcType="TIMESTAMP" property="userCreateDate" />
+    <result column="user_login_status" jdbcType="INTEGER" property="userLoginStatus" />
+    <result column="user_identity" jdbcType="INTEGER" property="userIdentity" />
+    <result column="user_is_delete" jdbcType="INTEGER" property="userIsDelete" />
+  </resultMap>
+<select id="selectUserById" resultMap="BaseResultMap">
+select user_id, username,password from t_user_login
+where user_id=#{id}
+</select>
+
+  <insert id="addUser">
+<!--<selectKey keyProperty="useruserLogin.id" resultType="string" order="BEFORE">-->
+<!--  SELECT replace(uuid(),'-','') FROM dual-->
+
+<!--</selectKey>-->
+    insert into t_user_login(username, password)
+    value(#{useruserLogin.username},#{useruserLogin.password})
+  </insert>
+</mapper>

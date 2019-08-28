@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.TUserInfMapper">
+  <resultMap id="UserInfMap" type="com.vip.imi.domain.entity.TUsreInf">
+    <!--@mbg.generated-->
+    <id column="user_inf_id" jdbcType="INTEGER" property="userInfId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_inf_name" jdbcType="VARCHAR" property="userInfName" />
+    <result column="user_inf_sex" jdbcType="VARCHAR" property="userInfSex" />
+    <result column="user_inf_email" jdbcType="VARCHAR" property="userInfEmail" />
+    <result column="user_inf_phone" jdbcType="VARCHAR" property="userInfPhone" />
+    <result column="user_inf_status" jdbcType="INTEGER" property="userInfStatus" />
+  </resultMap>
+<resultMap id="UserInfMapVo" type="com.vip.imi.domain.vo.TUserInfVo" extends="UserInfMap">
+  <id column="user_inf_id" jdbcType="INTEGER" property="userInfId" />
+  <result column="user_id" jdbcType="INTEGER" property="userId" />
+  <result column="user_inf_name" jdbcType="VARCHAR" property="userInfName" />
+  <result column="user_inf_sex" jdbcType="VARCHAR" property="userInfSex" />
+  <result column="user_inf_email" jdbcType="VARCHAR" property="userInfEmail" />
+  <result column="user_inf_phone" jdbcType="VARCHAR" property="userInfPhone" />
+
+  <collection property="userAddr" ofType="TUserAddr">
+    <id property="userAddrId" column="user_addr_id"/>
+    <result property="userInfId" column="user_inf_id" />
+    <result property="userAddr" column="user_addr" />
+    <result property="userAddrName" column="user_addr_name" />
+    <result property="userAddrPhone" column="user_addr_phone" />
+    <result property="userAddrAreaId" column="user_addr_area_id" />
+  </collection>
+</resultMap>
+  <select id="selectByPrimaryKey" resultMap="UserInfMapVo">
+    select
+           tui.user_inf_name,tui.user_inf_sex,tui.user_inf_email
+    ,tua.user_addr,tua.user_addr_name,tua.user_addr_phone,tua.user_addr_area_id
+     FROM t_usre_inf tui
+      LEFT JOIN  t_user_addr tua  ON tui.user_inf_id=tua.user_inf_id and tua.user_addr_is_default=0
+where tua.user_inf_id=#{userId}
+  </select>
+</mapper>
