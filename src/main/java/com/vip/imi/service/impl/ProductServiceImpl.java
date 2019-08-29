@@ -39,4 +39,5 @@ public class ProductServiceImpl implements ProductService {
         detailBean.setProductProperties(productProperties);
         return detailBean;
     }
+
 }

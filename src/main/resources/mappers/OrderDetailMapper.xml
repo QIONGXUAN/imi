@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.OrderDetailMapper">
+  <resultMap id="BaseResultMap" type="com.vip.imi.domain.entity.OrderDetail">
+    <!--@mbg.generated-->
+    <id column="order_detail_id" jdbcType="INTEGER" property="orderDetailId" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="productcar_id" jdbcType="INTEGER" property="productcarId" />
+    <result column="order_detail_status" jdbcType="INTEGER" property="orderDetailStatus" />
+  </resultMap>
+
+  <resultMap id="selectByOrderIdMap" type="com.vip.imi.domain.vo.OrderDetailVo"
+             extends="BaseResultMap">
+    <collection property="productcars" ofType="com.vip.imi.domain.entity.Productcar"
+                resultMap="com.vip.imi.mapper.ProductcarMapper.selectByUserIdMap"/>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    order_detail_id, order_id, productcar_id, order_detail_status
+  </sql>
+
+  <insert id="insert">
+    insert into t_order_detail (order_id, productcar_id)
+    values
+    <foreach collection="productcarIds" item="productcarId" separator=",">
+       (#{orderId},#{productcarId})
+    </foreach>
+  </insert>
+
+  <select id="selectByOrderId" resultMap="selectByOrderIdMap">
+    select tod.order_id, tod.productcar_id,
+    tp.productcar_num,
+    t.product_id, t.product_company, t.product_new_price, t.product_name
+    from t_order_detail tod
+    left join t_productcar tp on tod.productcar_id = tp.productcar_id
+    left join t_product t on tp.product_id = t.product_id
+    where tod.order_id=#{orderId}
+    and tod.order_detail_status=1
+  </select>
+
+</mapper>

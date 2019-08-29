@@ -19,7 +19,7 @@ public class ProductController {
     @Resource
     ProductService productService;
 
-    @RequestMapping
+    @RequestMapping("/buy")
     public Result productBuy(int productId){
         DetailBean productDetail = productService.productBuy(productId);
         return Result.success(productDetail);

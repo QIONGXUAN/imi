@@ -3,6 +3,8 @@ package com.vip.imi.mapper;
 import com.vip.imi.domain.entity.ProductPropertyValue;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 
 /**
  * 
@@ -12,10 +14,10 @@ import org.apache.ibatis.annotations.Param;
 public interface ProductPropertyValueMapper {
 
     /**
-     * 购物车中商品的三个特有属性【版本 颜色 套餐】查询 - 根据属性值三个id
-     * @param productPropertyValueId
+     * 查询购物车中商品的三个特有属性【版本 颜色 套餐】 - 根据属性值三个id
+     * @param productPropertyValueIds
      * @return
      */
-    ProductPropertyValue selectByProductPropertyValueId(@Param("ppvId") Integer productPropertyValueId);
+    List<ProductPropertyValue> selectByProductPropertyValueId(@Param("ppvIds") List<Integer> productPropertyValueIds);
 
 }

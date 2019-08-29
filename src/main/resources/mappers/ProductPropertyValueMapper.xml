@@ -15,10 +15,13 @@
   </sql>
 
   <select id="selectByProductPropertyValueId" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from t_product_property_value tppv
-    where tppv.product_property_value_id=#{ppvId}
+      select
+      <include refid="Base_Column_List" />
+      from t_product_property_value tppv
+      where tppv.product_property_value_id in
+      <foreach collection="ppvIds" item="ppvId"  open="(" close=")" separator=",">
+        #{ppvId}
+      </foreach>
   </select>
 
 

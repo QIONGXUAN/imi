@@ -12,8 +12,14 @@
     <result column="productcar_is_delete" jdbcType="INTEGER" property="productcarIsDelete" />
   </resultMap>
 
+  <resultMap id="selectByUserIdMap" type="com.vip.imi.domain.vo.ProductcarVo"
+             extends="BaseResultMap">
+    <association property="product" javaType="com.vip.imi.domain.entity.Product"
+                 resultMap="com.vip.imi.mapper.ProductMapper.BaseResultMap"/>
+  </resultMap>
+
   <sql id="Base_Column_List">
-    productcar_id, user_id, product_id, productcar_num
+    tpc.productcar_id, tpc.user_id, tpc.product_id, tpc.productcar_num
   </sql>
 
   <insert id="insert">
@@ -21,12 +27,14 @@
     values (#{userId},#{productId},#{productcarNum})
   </insert>
 
-  <select id="selectByUserId" resultMap="BaseResultMap">
+  <select id="selectByUserId" resultMap="selectByUserIdMap">
     select
-    <include refid="Base_Column_List" />
-    from t_productcar
-    where t_productcar.user_id=#{userId}
-    and t_productcar.productcar_is_delete=1
+    <include refid="Base_Column_List" />,
+    tp.product_name, tp.product_new_price, tp.product_company
+    from t_productcar tpc
+    left join t_product tp on tpc.product_id = tp.product_id
+    where tpc.user_id=#{userId}
+    and tpc.productcar_is_delete=0
   </select>
 
 </mapper>

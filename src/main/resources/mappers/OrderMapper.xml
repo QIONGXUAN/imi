@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vip.imi.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.vip.imi.domain.entity.Order">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="order_price" jdbcType="DECIMAL" property="orderPrice" />
+    <result column="order_is_pay" jdbcType="INTEGER" property="orderIsPay" />
+    <result column="order_pay_time" jdbcType="TIMESTAMP" property="orderPayTime" />
+    <result column="order_is_ship" jdbcType="INTEGER" property="orderIsShip" />
+    <result column="order_ship_time" jdbcType="TIMESTAMP" property="orderShipTime" />
+    <result column="order_is_receipt" jdbcType="INTEGER" property="orderIsReceipt" />
+    <result column="order_receipt_time" jdbcType="TIMESTAMP" property="orderReceiptTime" />
+    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    order_id, user_id, order_price, order_is_pay, order_pay_time, order_is_ship, order_ship_time,
+    order_is_receipt, order_receipt_time, order_status, order_number
+  </sql>
+
+  <insert id="insert" keyColumn="order_id" keyProperty="orderId" useGeneratedKeys="true">
+    insert into t_order (user_id, order_price)
+    values (#{order.userId},#{order.orderPrice})
+  </insert>
+
+  <select id="selectByOrderId" resultMap="BaseResultMap">
+    select o.order_id, o.user_id, o.order_price
+    from t_order o
+    where o.order_id=#{orderId}
+    and o.order_status=1
+  </select>
+</mapper>
